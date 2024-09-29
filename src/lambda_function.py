@@ -18,7 +18,7 @@ def calculate_secret_hash(client_id, client_secret, username):
     return base64.b64encode(dig).decode()
 
 def lambda_handler(event, context):
-    
+
     if isinstance(event['body'], str):
         body = json.loads(event['body'])
     else:
@@ -36,17 +36,14 @@ def lambda_handler(event, context):
     try:
         response = cognito.list_users(
             UserPoolId=user_pool_id,
-            AttributesToGet=['email_verified'],
             Filter=f'email = "{email}"'
         )
-        
-        for user in response['Users']:
-            for attribute in user['Attributes']:
-                if attribute['Name'] == 'email_verified' and attribute['Value'] == 'true':
-                    return {
-                        'statusCode': 400,
-                        'body': json.dumps({'error': 'Email is already confirmed and in use.'})
-                    }
+
+        if response['Users']:
+            return {
+                'statusCode': 400,
+                'body': json.dumps({'error': 'Email is already confirmed and in use.'})
+            }
     except ClientError as error:
         return {
             'statusCode': 400,
