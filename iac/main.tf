@@ -7,7 +7,7 @@ module "tech-challenge-register-lambda" {
   lambda_memory_size           = 128
   lambda_timeout               = 30
   lambda_description           = "Lambda function to register lambda functions"
-  lambda_image_uri             = "575403774961.dkr.ecr.us-east-1.amazonaws.com/tech-challenge-register-lambda:latest"
+  lambda_image_uri             = var.lambda_image_uri
   lambda_tags                  = local.tags
   lambda_package_type          = "Image"
   lambda_environment           = {}
