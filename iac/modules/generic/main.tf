@@ -42,14 +42,14 @@ module "aws_ecr_repository_policy" {
 ################################################
 
 module "aws_lambda_function" {
-  source = "git::https://github.com/team-tech-challenge/terraform-modules-remotes.git//aws_lambda_function?ref=feat/create-module-cognito"
+  source = "git::https://github.com/team-tech-challenge/terraform-modules-remotes.git//aws_lambda_function?ref=main"
 
   function_name = var.lambda_function_name
   role          = "arn:aws:iam::575403774961:role/LabRole"
   memory_size   = var.lambda_memory_size
   timeout       = var.lambda_timeout
   description   = var.lambda_description
-  architectures = ["arm64"]
+  architectures = ["x86_64"]
   image_uri     = var.lambda_image_uri
   tags = merge({
     "Name" = var.lambda_function_name
@@ -215,7 +215,7 @@ module "aws_api_gateway_stage" {
 ################################################
 
 module "aws_cognito_user_pool" {
-  source = "git::https://github.com/team-tech-challenge/terraform-modules-remotes.git//aws_cognito?ref=feat/create-module-cognito"
+  source = "git::https://github.com/team-tech-challenge/terraform-modules-remotes.git//aws_cognito?ref=main"
 
   user_pool_name = var.cognito_user_pool_name
   tags = merge({
@@ -234,7 +234,7 @@ module "aws_cognito_user_pool" {
 ################################################
 
 module "aws_cognito_user_pool_client" {
-  source = "git::https://github.com/team-tech-challenge/terraform-modules-remotes.git//aws_cognito_user_pool_client?ref=feat/create-module-cognito"
+  source = "git::https://github.com/team-tech-challenge/terraform-modules-remotes.git//aws_cognito_user_pool_client?ref=main"
 
   user_pool_client_name   = var.cognito_user_pool_name
   user_pool_id            = module.aws_cognito_user_pool.user_pool_id
