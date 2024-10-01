@@ -84,3 +84,20 @@ Necessary Imports: Utilizes libraries such as boto3 for interacting with Cognito
 Calculates Secret Hash: Generates a hash using HMAC and SHA-256, which is essential for authenticating the request.
 Event Handling: Processes the received event to extract user data.
 User Registration in Cognito: Attempts to register the user and returns a success or error response.
+
+**Example Usage**
+The event should follow this structure:
+
+```bash
+curl --location 'https://techchallenge.com.br/api/v1/register' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: ••••••' \
+--data-raw '{
+    "username": "111.111.111.11",
+    "password": "Teste@2024!!,",
+    "email": "teste@gmail.com"
+}'
+```
+**Common Errors**
+Email Already in Use: Returns an error if the email is already registered.
+Registration Issues: Any error during registration generates an appropriate error message.
