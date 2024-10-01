@@ -69,3 +69,18 @@ The repository is structured as follows:
   * [x] [aws_cognito_user_pool](https://github.com/team-tech-challenge/terraform-modules-remotes/tree/main/aws_cognito_user_pool_client)
   * [x] [aws_cognito_user_pool_client](https://github.com/team-tech-challenge/terraform-modules-remotes/tree/main/aws_cognito_user_pool_client)
 
+
+## **Lambda Function**
+
+The lambda_function.py is a key component of this repository, which contains Terraform modules for AWS resources. This function enables the registration of new users in an Amazon Cognito User Pool by collecting user information, checking if the email is already in use, and registering the user if everything is correct.
+
+**Key Features**
+Receives User Data: The function accepts an event containing the username, password, and email.
+Checks Email: Verifies if the provided email is already confirmed and in use.
+Registers User: If the email is not in use, it registers the user in Cognito and returns a success message.
+
+**How It Works**
+Necessary Imports: Utilizes libraries such as boto3 for interacting with Cognito and hmac for generating an authentication hash.
+Calculates Secret Hash: Generates a hash using HMAC and SHA-256, which is essential for authenticating the request.
+Event Handling: Processes the received event to extract user data.
+User Registration in Cognito: Attempts to register the user and returns a success or error response.
