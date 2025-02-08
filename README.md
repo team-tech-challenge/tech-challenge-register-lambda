@@ -103,7 +103,7 @@ curl --location 'https://techchallenge.com.br/api/v1/register' \
 --header 'Authorization: ••••••' \
 --data-raw '{
     "username": "111.111.111.11",
-    "password": "Teste@2024!!,",
+    "password": "Teste@2025!!,",
     "email": "teste@gmail.com"
 }'
 ```
