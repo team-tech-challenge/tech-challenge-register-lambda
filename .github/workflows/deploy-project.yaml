@@ -1,9 +1,14 @@
-name: 'Deploy to Terraform'
+name: 'Deploy Resources in Production'
+
+#on:
+#  pull_request:
+#    types:
+#      - closed
+#    branches:
+#      - main
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - main
 
